@@ -41,8 +41,9 @@ public class WHDHC {
 			answer = s.nextLine();
 
 			if (answer.equalsIgnoreCase("api")) {
-				System.out.print("Enter API key: ");
-				auth = new ApiAuthentication(url, s.nextLine().toCharArray());
+				var env = System.getenv();
+				String key = env.get("WHD_KEY");
+				auth = new ApiAuthentication(url, key.toCharArray());
 
 				System.out.println(auth.authenticate());
 			} else if (answer.equalsIgnoreCase("login")) {
@@ -81,7 +82,6 @@ public class WHDHC {
 		
 		// String whd = DEFAULT_URI + "Assets";
 		// String serial = "5m4wtt2";
-		// String key = "PSIxrodkJxQW4ae4TQn2lKIViKllIgPvS2cRwWpM";
 		// String query = "?qualifier=(serialNumber%3D'" + serial + "')&apiKey=" + key;
 
 		HttpClient client = HttpClient.newHttpClient();
